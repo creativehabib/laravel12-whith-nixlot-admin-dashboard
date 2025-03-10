@@ -3,18 +3,18 @@
       data-theme-mode="light" data-header-styles="light" data-menu-styles="light" data-toggled="close">
 <head>
     <!-- Meta Data -->
-    @include('layouts.partials.title-meta')
+    @include('layouts.partials.backend.title-meta')
 
-    @include('layouts.partials.head-css')
+    @include('layouts.partials.backend.head-css')
 </head>
 <body>
 
-@include('layouts.partials.switcher')
-@include('layouts.partials.loader')
+@include('layouts.partials.backend.switcher')
+@include('layouts.partials.backend.loader')
 
 <div class="page">
-    @include('layouts.partials.header')
-    @include("layouts.partials.sidebar")
+    @include('layouts.partials.backend.header')
+    @include("layouts.partials.backend.sidebar")
 
     <!-- Start::app-content -->
     <div class="main-content app-content">
@@ -23,13 +23,13 @@
         </div>
     </div>
     <!-- End::app-content -->
-    @include("layouts.partials.headersearch_modal")
-    @include("layouts.partials.footer")
+    @include("layouts.partials.backend.headersearch_modal")
+    @include("layouts.partials.backend.footer")
 
 </div>
 
-@include("layouts.partials.common-js")
-@include("layouts.partials.custom_switcher-js")
+@include("layouts.partials.backend.common-js")
+@include("layouts.partials.backend.custom_switcher-js")
 <script src="{{ asset('assets/js/custom.js') }}"></script>
 </body>
 </html>

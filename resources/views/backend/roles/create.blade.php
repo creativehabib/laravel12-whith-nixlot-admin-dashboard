@@ -1,8 +1,8 @@
-@extends('layouts.backend.app', ['subtitle' => 'Roles'])
+@extends('layouts.partials.backend.app', ['subtitle' => 'Roles'])
 @push('css')
 @endpush
 @section('content')
-    @include('layouts.partials/page-title', ['title' => 'Roles', 'subtitle' => 'Roles'])
+    @include('layouts.partials.backend.page-title', ['title' => 'Roles', 'subtitle' => 'Roles'])
 
     <div class="card">
         <div class="card-header">
@@ -10,21 +10,26 @@
         </div>
 
         <div class="card-body">
-            <form id="ajax-form" action="{{ isset($role) ? route('roles.update', $role->id) : route('roles.store') }}" method="POST">
+            <form id="ajax-form" action="{{ isset($role) ? route('roles.update', $role->id) : route('roles.store') }}"
+                  method="POST">
                 @csrf
-                @isset($role) @method('PUT') @endisset
+                @isset($role)
+                    @method('PUT')
+                @endisset
                 <div class="row">
                     <div class="col-12">
                         <div class="mb-3">
                             <label for="role" class="form-label">Role Name</label>
-                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="role" name="name" value="{{ $role->name ?? old('name') }}" required autofocus>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="role"
+                                   name="name" value="{{ $role->name ?? old('name') }}" required autofocus>
                             @error('name') <span class="invalid-feedback" role="alert">{{ $message }}</span> @enderror
                         </div>
                     </div>
 
                     <div class="text-center mb-3">
                         <strong>Manage Permission for Role</strong>
-                        @error('permissions') <span class="text-danger d-block" role="alert">{{ $message }}</span> @enderror
+                        @error('permissions') <span class="text-danger d-block"
+                                                    role="alert">{{ $message }}</span> @enderror
                     </div>
 
                     <div class="col-12">
@@ -47,7 +52,8 @@
                                                 @foreach($module->permissions as $permission)
                                                     <div class="col-md-6">
                                                         <div class="form-check form-checkbox-primary mb-2">
-                                                            <input class="form-check-input" type="checkbox" name="permissions[]"
+                                                            <input class="form-check-input" type="checkbox"
+                                                                   name="permissions[]"
                                                                    value="{{ $permission->id }}"
                                                                    id="permission-{{ $permission->id }}"
                                                             @isset($role)
@@ -56,7 +62,8 @@
                                                                     @endforeach
                                                                 @endisset
                                                             >
-                                                            <label class="form-check-label" for="permission-{{ $permission->id }}">
+                                                            <label class="form-check-label"
+                                                                   for="permission-{{ $permission->id }}">
                                                                 {{ $permission->name }}
                                                             </label>
                                                         </div>

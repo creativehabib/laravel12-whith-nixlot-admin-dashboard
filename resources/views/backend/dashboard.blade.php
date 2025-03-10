@@ -1,4 +1,4 @@
-@extends('layouts.backend.app', ['subtitle' => 'Dashboard'])
+@extends('layouts.partials.backend.app', ['subtitle' => 'Dashboard'])
 
 @section('content')
     @include('layouts.partials.backend.page-title',['title'=>'Dashboard','subtitle'=>'Dashboards'])

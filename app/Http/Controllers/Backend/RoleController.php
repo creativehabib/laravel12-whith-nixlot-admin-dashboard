@@ -17,7 +17,7 @@ class RoleController extends Controller
     public function index()
     {
         $roles = Role::all();
-        return view('layouts.backend.roles.index', compact('roles'));
+        return view('backend.roles.index', compact('roles'));
     }
 
     /**
@@ -26,7 +26,7 @@ class RoleController extends Controller
     public function create()
     {
         $modules = Module::all();
-        return view('layouts.backend.roles.create', compact('modules'));
+        return view('backend.roles.create', compact('modules'));
     }
 
     /**
@@ -62,7 +62,7 @@ class RoleController extends Controller
     public function edit(Role $role)
     {
         $modules = Module::all();
-        return view('layouts.backend.roles.create', compact('role', 'modules'));
+        return view('backend.roles.create', compact('role', 'modules'));
     }
 
     /**

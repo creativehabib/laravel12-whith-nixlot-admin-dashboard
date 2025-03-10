@@ -1,9 +1,9 @@
-@extends('layouts.backend.app', ['subtitle' => 'Roles'])
+@extends('layouts.partials.backend.app', ['subtitle' => 'Roles'])
 @push('css')
     <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.bootstrap5.css">
 @endpush
 @section('content')
-    @include('layouts.partials.page-title',['title'=>'Role','subtitle'=>'Roles'])
+    @include('layouts.partials.backend.page-title',['title'=>'Role','subtitle'=>'Roles'])
 
     <div class="card">
         <div class="card">
@@ -72,6 +72,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript">
         new DataTable('#datatable');
+
         function deleteData(id) {
             Swal.fire({
                 title: 'Are you sure?',
