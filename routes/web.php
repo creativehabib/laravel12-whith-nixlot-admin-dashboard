@@ -11,7 +11,7 @@ Auth::routes();
 
 Route::group(['prefix' => '/dashboard', 'middleware' => 'auth'], function () {
 
-    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/', DashboardController::class)->name('dashboard');
 
     // Role route
     Route::resource('roles', RoleController::class);

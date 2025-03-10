@@ -51,7 +51,7 @@
                                             <div class="row">
                                                 @foreach($module->permissions as $permission)
                                                     <div class="col-md-6">
-                                                        <div class="form-check form-checkbox-primary mb-2">
+                                                        <div class="form-check mb-2">
                                                             <input class="form-check-input" type="checkbox"
                                                                    name="permissions[]"
                                                                    value="{{ $permission->id }}"

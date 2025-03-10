@@ -8,13 +8,10 @@ use Illuminate\Support\Facades\Gate;
 
 class DashboardController extends Controller
 {
-    public function index()
-    {
-        return view('backend.dashboard');
-    }
+
     public function __invoke()
     {
-       Gate::authorize('admin-dashboard');
-        return view('layouts.backend.dashboard');
+//       Gate::authorize('dashboard');
+        return view('backend.dashboard');
     }
 }

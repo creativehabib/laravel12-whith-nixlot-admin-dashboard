@@ -28,8 +28,8 @@
                 <!-- End::slide__category -->
 
                 <!-- Start::slide -->
-                <li class="slide active">
-                    <a href="{{ route('dashboard') }}" class="side-menu__item active">
+                <li class="slide {{Request::is('dashboard') ? 'active' : ''}}">
+                    <a href="{{ route('dashboard') }}" class="side-menu__item {{Request::is('dashboard') ? 'active' : ''}}">
                         <i class="ti ti-device-desktop side-menu__icon"></i>
                         <span class="side-menu__label">Dashboard</span>
                     </a>
