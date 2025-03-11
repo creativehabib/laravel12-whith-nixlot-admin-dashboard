@@ -5,13 +5,11 @@
 @section('content')
     @include('layouts.partials.backend.page-title',['title'=>'User','subtitle'=>'Users'])
 
-    <div class="card">
-        <div class="card">
-            <div class="card-header">
-                <div class="d-flex justify-content-between">
-                    <h5 class="card-title">Roles List</h5>
-                    <a class="btn btn-sm btn-info" href="{{ route('users.create') }}">Add User</a>
-                </div>
+    <div class="">
+        <div class="card custom-card">
+            <div class="card-header justify-content-between">
+                <h5 class="card-title">Roles List</h5>
+                <a class="btn btn-sm btn-info" href="{{ route('users.create') }}">Add User</a>
             </div>
             <div class="table-responsive">
                 <table id="datatable" class="table table-centered table-nowrap mb-0 rounded">
@@ -32,11 +30,11 @@
                             <td>
                                 <div class="d-flex align-items-center">
                                     <div class="flex-shrink-0">
-                                        <img src="{{ config('app.placeholder').'40.png' }}" alt="" class="avatar-sm rounded-2">
+                                        <img src="{{ \App\Helpers\Helpers::imageUrl($user->avatar, \App\Models\User::IMAGE_UPLOAD_PATH) }}" style="width: 40px" alt="" class="avatar-sm rounded-2">
                                     </div>
                                     <div class="flex-grow-1 ms-3">
                                         <h6 class="mb-0">{{ $user->name }}</h6>
-                                        <span class="badge bg-success">{{ $user->role?->name }}</span>
+                                        <span class="badge bg-indigo">{{ $user->role?->name }}</span>
                                     </div>
                                 </div>
                             </td>
@@ -50,8 +48,12 @@
                             </td>
                             <td>{{ $user->created_at->diffForHumans() }}</td>
                             <td class="text-center">
+                                <a class="btn btn-secondary btn-sm" href="{{ route('users.show',$user->id) }}"><i
+                                        class="bx bxs-show"></i>
+                                    <span>Show</span>
+                                </a>
                                 <a class="btn btn-info btn-sm" href="{{ route('users.edit',$user->id) }}"><i
-                                        class="bx bx-pencil"></i>
+                                        class="bx bxs-edit"></i>
                                     <span>Edit</span>
                                 </a>
                                 <button type="button" class="btn btn-danger btn-sm" onclick="deleteData({{ $user->id }})">

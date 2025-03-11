@@ -9,6 +9,7 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Throwable;
 
 class UserController extends Controller
 {
@@ -41,11 +42,10 @@ class UserController extends Controller
         try {
             (new User())->storeUserData($request);
             notify()->success("User created successfully.",'Created');
-            return redirect()->route('backend.users.index');
+            return redirect()->route('users.index');
         } catch (Throwable $th) {
-            logger($th);
             notify()->error("User can't be created.",'Error');
-            return response()->json(['success' => false, 'error' => $th->getMessage()], 500);
+            return back();
         }
     }
 
@@ -54,7 +54,8 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        Gate::authorize('app.users.index');
+        return view('backend.users.show', compact('user'));
     }
 
     /**
@@ -62,7 +63,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        Gate::authorize('app.users.edit');
+        $roles = Role::all();
+        return view('backend.users.form', compact('user', 'roles'));
     }
 
     /**
@@ -75,7 +78,7 @@ class UserController extends Controller
             $user->updateUserData($request, $user);
             notify()->success("User updated successfully.",'Updated');
             return redirect()->route('users.index');
-        } catch (\Throwable $th) {
+        } catch (Throwable $th) {
             notify()->error("User can't be updated.",'Error');
             return back();
         }

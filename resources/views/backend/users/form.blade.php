@@ -9,7 +9,8 @@
     </style>
 @endpush
 @section('content')
-    @include('layouts.partials.backend.page-title', ['title' => 'Create user', 'subtitle' => 'User'])
+    @include('layouts.partials.backend.page-title', ['title' => 'User', 'subtitle' => 'User'])
+
     <form id="ajax-form" action="{{ isset($user) ? route('users.update', $user->id) : route('users.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         @isset($user) @method('PUT') @endisset
@@ -22,31 +23,31 @@
                     <div class="card-body">
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="Enter user name" value="{{ $user->name ?? old('name') }}" required autofocus>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="Enter user name" value="{{ $user->name ?? old('name') }}" autofocus>
                             @error('name') <span class="invalid-feedback" role="alert">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="Enter user email" value="{{ $user->email ?? old('email') }}" required>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="Enter user email" value="{{ $user->email ?? old('email') }}">
                             @error('email') <span class="invalid-feedback" role="alert">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Enter your password" id="password" name="password" required>
+                            <input type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Enter your password" id="password" name="password">
                             @error('password') <span class="invalid-feedback" role="alert">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-3">
                             <label for="password_confirmation" class="form-label">Confirm Password</label>
-                            <input type="password" class="form-control" id="password_confirmation" placeholder="Enter confirm password" name="password_confirmation" required>
+                            <input type="password" class="form-control" id="password_confirmation" placeholder="Enter confirm password" name="password_confirmation">
                         </div>
                         <div class="mb-3">
                             <label for="address" class="form-label">Address</label>
-                            <textarea class="form-control @error('address') is-invalid @enderror" id="address" name="address" placeholder="Enter user address" required>{{ $user->address ?? old('address') }}</textarea>
+                            <textarea class="form-control @error('address') is-invalid @enderror" id="address" name="address" placeholder="Enter user address" >{{ $user->address ?? old('address') }}</textarea>
                             @error('address') <span class="invalid-feedback" role="alert">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-3">
                             <label for="bio" class="form-label">Bio</label>
-                            <textarea class="form-control @error('bio') is-invalid @enderror" id="bio" name="bio" placeholder="Enter user bio" required>{{ $user->bio ?? old('bio') }}</textarea>
+                            <textarea class="form-control @error('bio') is-invalid @enderror" id="bio" name="bio" placeholder="Enter user bio">{{ $user->bio ?? old('bio') }}</textarea>
                             @error('bio') <span class="invalid-feedback" role="alert">{{ $message }}</span> @enderror
                         </div>
 
@@ -55,18 +56,19 @@
             </div>
             <div class="col-md-5">
                 <div class="card custom-card">
-                    <div class="card-header">
+                    <div class="card-header justify-content-between align-items-center">
                         <h5 class="card-title mb-0">User Status & Role</h5>
+                        <a href="{{ route('users.index') }}" class="btn btn-sm btn-primary">Back</a>
                     </div>
                     <div class="card-body">
                         <div class="mb-3">
                             <label for="phone" class="form-label">Phone</label>
-                            <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone" placeholder="Enter user phone" value="{{ $user->phone ?? old('phone') }}" required>
+                            <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone" placeholder="Enter user phone" value="{{ $user->phone ?? old('phone') }}">
                             @error('phone') <span class="invalid-feedback" role="alert">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-3">
                             <label for="role_id" class="form-label">Role</label>
-                            <select class="js-example-basic-single @error('role_id') is-invalid @enderror" id="role_id" name="role_id" required>
+                            <select class="js-example-basic-single @error('role_id') is-invalid @enderror" id="role_id" name="role_id">
                                 <option value="">Select Role</option>
                                 @foreach($roles as $role)
                                     <option value="{{ $role->id }}" @isset($user) {{ $user->role_id == $role->id ? 'selected' : '' }} @endisset>{{ $role->name }}</option>
@@ -77,18 +79,18 @@
 
                         <div class="mb-3">
                             <label for="avatar" class="form-label">Avatar</label>
-                            <input type="file" class="dropify" @error('avatar') is-invalid @enderror" id="avatar" name="avatar">
-                            @error('avatar') <span class="invalid-feedback" role="alert">{{ $message }}</span> @enderror
+                            <input type="file" class="dropify @error('avatar') is-invalid @enderror" data-default-file="{{ isset($user) ? \App\Helpers\Helpers::imageUrl($user->avatar, \App\Models\User::IMAGE_UPLOAD_PATH, 300) : '' }}" id="avatar" name="avatar">
+                            @error('avatar') <span class="text-danger" role="alert">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-3">
                             <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" role="switch" id="switch-sm" name="status" @isset($user) {{ $user->status == 1 ? 'checked' : '' }} @endisset>
+                                <input class="form-check-input" type="checkbox" role="switch" id="switch-sm" name="status" @isset($user) {{ $user->status == true ? 'checked' : '' }} @endisset>
                                 <label class="form-check-label" for="switch-sm">User status</label>
                                 @error('status') <span class="invalid-feedback" role="alert">{{ $message }}</span> @enderror
                             </div>
                         </div>
                         <div class="col-12">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">{{ __((isset($user) ? 'Update' : 'Create') . ' User') }}</button>
                         </div>
                     </div>
                 </div>

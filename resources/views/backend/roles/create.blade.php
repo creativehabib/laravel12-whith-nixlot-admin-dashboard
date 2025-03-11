@@ -4,7 +4,7 @@
 @section('content')
     @include('layouts.partials.backend.page-title', ['title' => 'Roles', 'subtitle' => 'Roles'])
 
-    <div class="card">
+    <div class="card custom-card">
         <div class="card-header">
             <h5 class="card-title mb-0">Manage Roles</h5>
         </div>
@@ -94,7 +94,6 @@
 
 @push('scripts')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('#selectAll').click(function (event) {

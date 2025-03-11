@@ -5,44 +5,42 @@
 @section('content')
     @include('layouts.partials.backend.page-title',['title'=>'Role','subtitle'=>'Roles'])
 
-    <div class="card">
+    <div class="card custom-card">
         <div class="card">
-            <div class="card-header">
-                <div class="d-flex justify-content-between">
-                    <h5 class="card-title">Roles List</h5>
-                    <a class="btn btn-sm btn-info" href="{{ route('roles.create') }}">Add Role</a>
-                </div>
+            <div class="card-header justify-content-between">
+                <h5 class="card-title">Roles List</h5>
+                <a class="btn btn-sm btn-info" href="{{ route('roles.create') }}">Add Role</a>
             </div>
             <div class="table-responsive">
-                <table id="datatable" class="table table-centered table-nowrap mb-0 rounded">
+                <table id="datatable" class="table mb-0 rounded">
                     <thead>
                     <tr>
-                        <th class="text-center">#</th>
-                        <th class="text-center">Name</th>
-                        <th class="text-center">Permissions</th>
-                        <th class="text-center">Updated At</th>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Permissions</th>
+                        <th>Updated At</th>
                         <th class="text-center">Actions</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($roles as $key => $role)
                         <tr>
-                            <td class="text-center text-muted">{{ $key + 1 }}</td>
-                            <td class="text-center">{{ $role->name }}</td>
-                            <td class="text-center">
+                            <td class="text-start">{{ $key + 1 }}</td>
+                            <td>{{ $role->name }}</td>
+                            <td class="text-start">
                                 @if ($role->permissions->count() > 0)
                                     <span class="badge bg-outline-info">{{ $role->permissions->count() }}</span>
                                 @else
                                     <span class="badge bg-outline-danger rounded-pill">No permission found :(</span>
                                 @endif
                             </td>
-                            <td class="text-center">{{ $role->updated_at->diffForHumans() }}</td>
+                            <td>{{ $role->updated_at->diffForHumans() }}</td>
                             <td class="text-center">
                                 <a class="btn btn-info btn-sm" href="{{ route('roles.edit',$role->id) }}"><i
                                         class="fas fa-edit"></i>
                                     <span>Edit</span>
                                 </a>
-                                @if ($role->deletable == true)
+                                @if ($role->deletable === true)
                                     <button type="button" class="btn btn-danger btn-sm"
                                             onclick="deleteData({{ $role->id }})">
                                         <i class="bx bx-trash"></i>

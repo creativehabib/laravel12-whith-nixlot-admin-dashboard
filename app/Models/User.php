@@ -12,31 +12,19 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class User extends Authenticatable
+class User extends Authenticatable implements HasMedia
 {
-    public const IMAGE_UPLOAD_PATH = 'uploads/users/';
+
 
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'role_id',
-        'password',
-        'address',
-        'bio',
-        'phone',
-        'status',
-        'avatar'
-    ];
+    use HasFactory, Notifiable, InteractsWithMedia;
 
+    public const IMAGE_UPLOAD_PATH = 'uploads/users/';
+    protected $guarded = ['id'];
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -60,6 +48,12 @@ class User extends Authenticatable
         ];
     }
 
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('avatar')
+            ->singleFile();
+    }
+
     public function storeUserData(Request $request)
     {
         $data = $this->prepareData($request);
@@ -68,46 +62,24 @@ class User extends Authenticatable
 
     public function updateUserData(Request $request, Model $model)
     {
-        return $user->update($this->prepareData($request, $model));
+        return $model->update($this->prepareData($request, $model));
     }
 
     final public function prepareData(Request $request, Model|NULL $model = null)
     {
         $data = [
-            'role_id' => $request->input('role_id'),
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'password' => Hash::make($request->input('password')),
-            'confirm_password' => Hash::make($request->input('confirm_password')),
-            'address' => $request->input('address'),
-            'phone' => $request->input('phone'),
-            'status' => $request->input('status'),
-            'bio' => $request->input('bio'),
+            'name'      => $request->input('name'),
+            'email'     => $request->input('email'),
+            'password'  => $request->input('password') !== null ? Hash::make($request->input('password')) : $model?->password,
+            'role_id'   => $request->input('role_id'),
+            'address'   => $request->input('address'),
+            'phone'     => $request->input('phone'),
+            'status'    => $request->filled('status'),
+            'bio'       => $request->input('bio'),
         ];
         // Handle image upload
-        $data['avatar'] = $this->handleFileUpload($request, 'avatar', $model?->avatar ?? null, self::IMAGE_UPLOAD_PATH);
+        $data['avatar'] = Helpers::handleFileUpload($request, 'avatar', $model?->avatar ?? null, self::IMAGE_UPLOAD_PATH);
         return $data;
-    }
-
-
-    private function handleFileUpload(Request $request, string $fileName, ?string $existingFile, string $uploadPath): ?string
-    {
-        if(!$request->hasFile($fileName)){
-            return $existingFile; // Return existing file if new one isn't upload
-        }
-        $file = $request->file($fileName);
-        // Delete old file/image if it exists
-        if(!empty($existingFile)){
-            $oldFilePath = public_path($uploadPath . $existingFile);
-            if(File::exists($oldFilePath)){
-                File::delete($oldFilePath);
-            }
-        }
-        // Generate new image/file name
-        $extension = $file->getClientOriginalExtension();
-        $fileName = time() . '_' . Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)).'.'.$extension;
-        $file->move($uploadPath, $fileName); // Move file to destination
-        return $fileName;
     }
 
     /**
@@ -116,7 +88,7 @@ class User extends Authenticatable
      */
     final public function deleteUser(Model $model): void
     {
-        Helpers::deleteFile($model->image, self::IMAGE_UPLOAD_PATH);
+        Helpers::deleteFile($model->avatar, self::IMAGE_UPLOAD_PATH);
         $model->delete();
     }
 
@@ -131,6 +103,6 @@ class User extends Authenticatable
      */
     public function hasPermission($permission): bool
     {
-        return $this->role->permissions()->where('slug', $permission)->first() ? true : false;
+        return (bool)$this->role->permissions()->where('slug', $permission)->first();
     }
 }
