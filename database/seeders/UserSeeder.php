@@ -22,6 +22,7 @@ class UserSeeder extends Seeder
             'email' => 'admin@demo.com',
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
+            'status' => true,
             'remember_token' => Str::random(10),
         ]);
         User::updateOrCreate([
@@ -30,6 +31,7 @@ class UserSeeder extends Seeder
             'email' => 'user@demo.com',
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
+            'status' => false,
             'remember_token' => Str::random(10),
         ]);
     }

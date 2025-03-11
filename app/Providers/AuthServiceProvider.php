@@ -20,8 +20,6 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Gate::define('admin-dashboard', function ($user) {
-            return $user->role->slug === 'admin';
-        });
+
     }
 }

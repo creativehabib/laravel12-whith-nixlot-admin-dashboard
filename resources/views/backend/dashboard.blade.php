@@ -5,6 +5,13 @@
 
     <!-- Start::row-1 -->
     <div class="row">
+        <div class="mb-2">
+            @role('admin')
+            Admin Dashboard (Hi, Admin)
+            @else
+                User Dashboard (Hi, User)
+                @endrole
+        </div>
         <div class="col-xxl-3 col-sm-6">
             <div class="card mg-b-20">
                 <div class="card-body">

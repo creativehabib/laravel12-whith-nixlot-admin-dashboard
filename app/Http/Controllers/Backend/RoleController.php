@@ -16,7 +16,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-//        Gate::authorize('app.roles.index');
+        Gate::authorize('app.roles.index');
         $roles = Role::all();
         return view('backend.roles.index', compact('roles'));
     }
@@ -26,7 +26,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-//        Gate::authorize('app.roles.create');
+        Gate::authorize('app.roles.create');
         $modules = Module::all();
         return view('backend.roles.create', compact('modules'));
     }
@@ -36,7 +36,7 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-//        Gate::authorize('app.roles.create');
+        Gate::authorize('app.roles.create');
         $request->validate([
             'name' => 'required|string|unique:roles,name',
             'permissions' => 'required|array',
@@ -64,7 +64,7 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-//        Gate::authorize('app.roles.edit');
+        Gate::authorize('app.roles.edit');
         $modules = Module::all();
         return view('backend.roles.create', compact('role', 'modules'));
     }
@@ -74,7 +74,7 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-//        Gate::authorize('app.roles.edit');
+        Gate::authorize('app.roles.edit');
         $request->validate([
             'name' => 'required|string|unique:roles,name,' . $role->id,
             'permissions' => 'required|array',
@@ -85,7 +85,6 @@ class RoleController extends Controller
             'name' => $request->name,
             'slug' => Str::slug($request->name),
         ]);
-
         $role->permissions()->sync($request->input('permissions'));
         notify()->success("Role updated successfully.");
         return redirect()->route('roles.index');
@@ -96,7 +95,7 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-//        Gate::authorize('app.roles.destroy');
+        Gate::authorize('app.roles.destroy');
         if($role->deletable){
             $role->delete();
             notify()->success("Role deleted successfully.", "Success");

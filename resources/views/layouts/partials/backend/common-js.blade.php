@@ -26,5 +26,6 @@
 <!-- Color Picker JS -->
 <script src="{{ asset('assets/libs/@simonwep/pickr/pickr.es5.min.js') }}"></script>
 <script src="{{ asset('js/iziToast.js') }}"></script>
+<script src="{{ asset('js/sweetalert.js') }}"></script>
 @include('vendor.lara-izitoast.toast');
 @stack('scripts')

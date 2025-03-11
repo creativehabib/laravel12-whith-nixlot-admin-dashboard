@@ -68,36 +68,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.js"></script>
-    <script src="{{ asset('assets/js/datatables.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript">
         new DataTable('#datatable');
-
-        function deleteData(id) {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: 'You will not be able to recover this record!',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, keep it'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    event.preventDefault();
-                    document.getElementById('delete-form-' + id).submit();
-                    Swal.fire(
-                        'Deleted!',
-                        'Your record has been deleted.',
-                        'success'
-                    )
-                } else if (result.dismiss === Swal.DismissReason.cancel) {
-                    Swal.fire(
-                        'Cancelled',
-                        'Your record is safe :)',
-                        'error'
-                    )
-                }
-            });
-        }
     </script>
 @endpush

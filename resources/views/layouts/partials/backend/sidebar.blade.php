@@ -36,9 +36,9 @@
                 </li>
                 <!-- End::slide -->
                 <li class="slide__category"><span class="category-name">Access Control</span></li>
-                <li class="slide has-sub  {{Request::is('dashboard/roles*') ? 'active open' : ''}}">
-                    <a href="javascript:void(0);" class="side-menu__item">
-                        <i class="ti ti-dice-4  side-menu__icon"></i>
+                <li class="slide has-sub  {{Request::is('dashboard/*') ? 'active open' : ''}}">
+                    <a href="javascript:void(0);" class="side-menu__item {{Request::is('dashboard/*') ? 'active' : ''}}">
+                        <i class="ti ti-access-point side-menu__icon"></i>
                         <span class="side-menu__label">Access Control</span>
                         <i class="fe fe-chevron-right side-menu__angle"></i>
                     </a>
@@ -48,6 +48,9 @@
                         </li>
                         <li class="slide {{Request::is('dashboard/roles*') ? 'active' : ''}}">
                             <a href="{{ route('roles.index') }}" class="side-menu__item  {{Request::is('dashboard/roles*') ? 'active' : ''}}">Roles</a>
+                        </li>
+                        <li class="slide {{Request::is('dashboard/users*') ? 'active' : ''}}">
+                            <a href="{{ route('users.index') }}" class="side-menu__item  {{Request::is('dashboard/users*') ? 'active' : ''}}">Users</a>
                         </li>
                     </ul>
                 </li>
