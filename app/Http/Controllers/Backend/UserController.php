@@ -41,11 +41,11 @@ class UserController extends Controller
         try {
             (new User())->storeUserData($request);
             notify()->success("User created successfully.",'Created');
-            return redirect()->route('users.index');
-        } catch (\Throwable $th) {
+            return redirect()->route('backend.users.index');
+        } catch (Throwable $th) {
             logger($th);
             notify()->error("User can't be created.",'Error');
-            return back();
+            return response()->json(['success' => false, 'error' => $th->getMessage()], 500);
         }
     }
 

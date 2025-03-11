@@ -28,7 +28,13 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'role_id',
         'password',
+        'address',
+        'bio',
+        'phone',
+        'status',
+        'avatar'
     ];
 
     /**
@@ -60,7 +66,7 @@ class User extends Authenticatable
         return self::create($data);
     }
 
-    public function updateUserData(Request $request, User $user)
+    public function updateUserData(Request $request, Model $model)
     {
         return $user->update($this->prepareData($request, $model));
     }

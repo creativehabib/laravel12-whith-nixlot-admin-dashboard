@@ -46,7 +46,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="bio" class="form-label">Bio</label>
-                            <textarea class="form-control @error('bio') is-invalid @enderror" id="bio" name="bio" placeholder="Enter user bio" required>{{ $user->address ?? old('address') }}</textarea>
+                            <textarea class="form-control @error('bio') is-invalid @enderror" id="bio" name="bio" placeholder="Enter user bio" required>{{ $user->bio ?? old('bio') }}</textarea>
                             @error('bio') <span class="invalid-feedback" role="alert">{{ $message }}</span> @enderror
                         </div>
 
@@ -66,7 +66,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="role_id" class="form-label">Role</label>
-                            <select class="js-example-basic-single @error('role') is-invalid @enderror" id="role_id" name="role_id" required>
+                            <select class="js-example-basic-single @error('role_id') is-invalid @enderror" id="role_id" name="role_id" required>
                                 <option value="">Select Role</option>
                                 @foreach($roles as $role)
                                     <option value="{{ $role->id }}" @isset($user) {{ $user->role_id == $role->id ? 'selected' : '' }} @endisset>{{ $role->name }}</option>
@@ -77,7 +77,7 @@
 
                         <div class="mb-3">
                             <label for="avatar" class="form-label">Avatar</label>
-                            <input type="file" class="" @error('avatar') is-invalid @enderror" id="avatar" name="avatar">
+                            <input type="file" class="dropify" @error('avatar') is-invalid @enderror" id="avatar" name="avatar">
                             @error('avatar') <span class="invalid-feedback" role="alert">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-3">
