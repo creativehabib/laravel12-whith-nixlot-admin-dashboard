@@ -23,15 +23,15 @@ class BackupController extends Controller
 
         $backups = [];
         // make an array of backup files, with their filesize and creation date
-        foreach ($files as $k => $f) {
+        foreach ($files as $key => $file) {
             // only take the zip files into account
-            if (substr($f, -4) == '.zip' && $disk->exists($f)) {
-                $file_name = str_replace(config('backup.backup.name') . '/', '', $f);
+            if (substr($file, -4) == '.zip' && $disk->exists($file)) {
+                $file_name = str_replace(config('backup.backup.name'). '/', '', $file);
                 $backups[] = [
-                    'file_path' => $f,
+                    'file_path' => $file,
                     'file_name' => $file_name,
-                    'file_size' => $this->bytesToHuman($disk->size($f)),
-                    'created_at' => Carbon::parse($disk->lastModified($f))->diffForHumans(),
+                    'file_size' => $this->bytesToHuman($disk->size($file)),
+                    'created_at' => Carbon::parse($disk->lastModified($file))->diffForHumans(),
                     'download_link' => action([BackupController::class, 'download'], [$file_name]),
                 ];
             }
@@ -127,7 +127,7 @@ class BackupController extends Controller
         // start the backup process
         Artisan::call('backup:clean');
 
-        notify()->success('All Old Backups Successfully Deleted.', 'Added');
+        notify()->success('All Old Backups Successfully Deleted!');
         return back();
     }
 
@@ -136,7 +136,7 @@ class BackupController extends Controller
         Artisan::call('config:clear');
         Artisan::call('cache:clear');
         Artisan::call('optimize:clear');
-        notify()->success('Application cache cleared successfully.', 'Success');
+        notify()->success('Cache cleared successfully!');
         return back();
     }
 }

@@ -14,4 +14,5 @@ class DashboardController extends Controller
         Gate::authorize('app.dashboard');
         return view('backend.dashboard');
     }
+
 }

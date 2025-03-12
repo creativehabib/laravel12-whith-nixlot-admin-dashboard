@@ -15,7 +15,7 @@
         @csrf
         @isset($user) @method('PUT') @endisset
         <div class="row">
-            <div class="col-md-7">
+            <div class="col-md-8">
                 <div class="card custom-card">
                     <div class="card-header">
                         <h5 class="card-title mb-0">User Info</h5>
@@ -54,7 +54,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-5">
+            <div class="col-md-4">
                 <div class="card custom-card">
                     <div class="card-header justify-content-between align-items-center">
                         <h5 class="card-title mb-0">User Status & Role</h5>

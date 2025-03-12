@@ -130,7 +130,7 @@
             <div class="header-element header-fullscreen">
                 <!-- Start::header-link -->
                 <a href="{{ route('backups.index') }}" class="header-link">
-                    <i class="ti ti-database header-link-icon"></i>
+                    <i class="ti ti-database-export header-link-icon"></i>
                 </a>
                 <!-- End::header-link -->
             </div>
@@ -469,13 +469,13 @@
                 <!-- End::header-link|dropdown-toggle -->
                 <ul class="main-header-dropdown dropdown-menu pt-0 overflow-hidden header-profile-dropdown dropdown-menu-end"
                     aria-labelledby="mainHeaderProfile">
-                    <li><a class="dropdown-item d-flex" href="profile.html"><i
+                    <li><a class="dropdown-item d-flex" href="{{ route('profile.index') }}"><i
                                 class="ti ti-user-circle fs-18 me-2 op-7"></i>Profile ({{ Auth::user()->role->name }}
                             )</a></li>
                     <li><a class="dropdown-item d-flex" href="mail.html"><i class="ti ti-inbox fs-18 me-2 op-7"></i>Inbox
                             <span class="badge bg-warning-transparent ms-auto">37</span></a></li>
-                    <li><a class="dropdown-item d-flex border-block-end" href="to-do-list.html"><i
-                                class="ti ti-clipboard-check fs-18 me-2 op-7"></i>Task Manager</a></li>
+                    <li><a class="dropdown-item d-flex border-block-end" href="{{ route('profile.password.change') }}"><i
+                                class="ti ti-clipboard-check fs-18 me-2 op-7"></i>Change Password</a></li>
                     <li><a class="dropdown-item d-flex" href="settings.html"><i
                                 class="ti ti-adjustments-horizontal fs-18 me-2 op-7"></i>Settings</a></li>
                     <li><a class="dropdown-item d-flex" href="chat.html"><i class="ti ti-headset fs-18 me-2 op-7"></i>Support</a>
