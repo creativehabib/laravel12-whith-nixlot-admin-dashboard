@@ -14,3 +14,6 @@ Route::resource('users', UserController::class);
 
 // Backend Routes
 Route::resource('backups', BackupController::class)->only(['index', 'store', 'destroy']);
+Route::get('backups/{file_name}', [BackupController::class, 'download'])->name('backups.download');
+Route::delete('backups', [BackupController::class, 'clean'])->name('backups.clean');
+Route::delete('backups',[BackupController::class, 'cache'])->name('backups.cache');

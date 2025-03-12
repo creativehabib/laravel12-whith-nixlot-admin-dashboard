@@ -125,6 +125,25 @@
             </div>
             <!-- End::header-element -->
 
+            <div class="header-element header-fullscreen">
+                <!-- Start::header-link -->
+                <a href="#" onclick="event.preventDefault();
+                          document.getElementById('cache-clear').submit();" class="header-link">
+                    <i class="ti ti-recycle header-link-icon"></i>
+                </a>
+                <form id="cache-clear" action="{{ route('backups.cache') }}" method="POST" style="display: none;">
+                    @csrf
+                    @method('DELETE')
+                </form>
+                <!-- End::header-link -->
+            </div>
+            <div class="header-element header-fullscreen">
+                <!-- Start::header-link -->
+                <a href="{{ route('backups.cache') }}" class="header-link">
+                    <i class="ti ti-database header-link-icon"></i>
+                </a>
+                <!-- End::header-link -->
+            </div>
             <!-- Start::header-element -->
             <div class="header-element header-theme-mode">
                 <!-- Start::header-link|layout-setting -->
