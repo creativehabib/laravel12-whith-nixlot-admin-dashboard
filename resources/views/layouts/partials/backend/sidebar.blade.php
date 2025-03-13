@@ -28,8 +28,8 @@
                 <!-- End::slide__category -->
 
                 <!-- Start::slide -->
-                <li class="slide {{Request::is('dashboard') ? 'active' : ''}}">
-                    <a href="{{ route('dashboard') }}" class="side-menu__item {{Request::is('dashboard') ? 'active' : ''}}">
+                <li class="slide">
+                    <a href="{{ route('dashboard') }}" class="side-menu__item">
                         <i class="ti ti-device-desktop side-menu__icon"></i>
                         <span class="side-menu__label">Dashboard</span>
                     </a>
@@ -76,7 +76,7 @@
                             <a href="badge.html" class="side-menu__item">Badge</a>
                         </li>
                         <li class="slide">
-                            <a href="breadcrumb.html" class="side-menu__item">Breadcrumb</a>
+                            <a href="{{ route('pages.index') }}" class="side-menu__item">Pages</a>
                         </li>
                         <li class="slide">
                             <a href="buttons.html" class="side-menu__item">Buttons</a>
