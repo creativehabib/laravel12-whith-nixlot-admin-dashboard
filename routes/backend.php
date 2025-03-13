@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\BackupController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\PageController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\UserController;
@@ -26,3 +27,6 @@ Route::resource('backups', BackupController::class)->only(['index', 'store', 'de
 Route::get('backups/{file_name}', [BackupController::class, 'download'])->name('backups.download');
 Route::delete('backups', [BackupController::class, 'clean'])->name('backups.clean');
 Route::delete('cache',[BackupController::class, 'cache'])->name('cache.clear');
+
+// Page
+Route::resource('pages', PageController::class);

@@ -92,5 +92,30 @@ class PermissionSeeder extends Seeder
             'module_id' => $moduleBackup->id,
             'slug' => 'app.backups.destroy',
         ]);
+
+        // pages
+        $pageModule = Module::updateOrCreate([
+            'name' => 'Pages',
+        ]);
+        Permission::updateOrCreate([
+            'name' => 'Access Page',
+            'module_id' => $pageModule->id,
+            'slug' => 'app.pages.index',
+        ]);
+        Permission::updateOrCreate([
+            'name' => 'Create Page',
+            'module_id' => $pageModule->id,
+            'slug' => 'app.pages.create',
+        ]);
+        Permission::updateOrCreate([
+            'name' => 'Edit Page',
+            'module_id' => $pageModule->id,
+            'slug' => 'app.pages.edit',
+        ]);
+        Permission::updateOrCreate([
+            'name' => 'Delete Page',
+            'module_id' => $pageModule->id,
+            'slug' => 'app.pages.destroy',
+        ]);
     }
 }
