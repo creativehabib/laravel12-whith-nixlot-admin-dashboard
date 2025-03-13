@@ -24,7 +24,7 @@
 <script src="{{ asset('assets/js/simplebar.js') }}"></script>
 
 <!-- Color Picker JS -->
-<script src="{{ asset('assets/libs/@simonwep/pickr/pickr.es5.min.js') }}"></script>
+<script src="https://www.spruko.com/demo/nixlot/dist/assets/libs/@simonwep/pickr/pickr.es5.min.js"></script>
 <script src="{{ asset('js/iziToast.js') }}"></script>
 <script src="{{ asset('js/sweetalert.js') }}"></script>
 @include('vendor.lara-izitoast.toast');
