@@ -24,7 +24,8 @@ class PageController extends Controller
      */
     public function create()
     {
-        //
+        Gate::authorize('app.pages.create');
+        return view('backend.pages.form');
     }
 
     /**
@@ -32,7 +33,15 @@ class PageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Gate::authorize('app.pages.create');
+        $this->validate($request, [
+            'title'     => 'required|string|unique:pages',
+            'body'      => 'nullable|string',
+            'image'     => 'nullable|image'
+        ]);
+        (new Page())->storeData($request);
+        notify()->success("Page created successfully.");
+        return redirect()->route('pages.index');
     }
 
     /**
@@ -48,7 +57,8 @@ class PageController extends Controller
      */
     public function edit(Page $page)
     {
-        //
+        Gate::authorize('app.pages.edit');
+        return view('backend.pages.form', compact('page'));
     }
 
     /**
@@ -56,7 +66,15 @@ class PageController extends Controller
      */
     public function update(Request $request, Page $page)
     {
-        //
+        Gate::authorize('app.pages.edit');
+        $this->validate($request, [
+            'title'     => 'required|string|unique:pages,title,'.$page->id,
+            'body'      => 'nullable|string',
+            'image'     => 'nullable|image'
+        ]);
+        (new Page())->updateData($request, $page);
+        notify()->success("Page updated successfully.");
+        return redirect()->route('pages.index');
     }
 
     /**
@@ -64,6 +82,8 @@ class PageController extends Controller
      */
     public function destroy(Page $page)
     {
-        //
+        (new Page())->deletePage($page);
+        notify()->success("Page deleted successfully.");
+        return back();
     }
 }

@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Backend\BackupController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\MenuBuilderController;
+use App\Http\Controllers\Backend\MenuController;
 use App\Http\Controllers\Backend\PageController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\RoleController;
@@ -9,7 +11,7 @@ use App\Http\Controllers\Backend\UserController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', DashboardController::class)->name('dashboard');
+Route::get('/admin', DashboardController::class)->name('dashboard');
 
 Route::resource('roles', RoleController::class);
 Route::resource('users', UserController::class);
@@ -30,3 +32,9 @@ Route::delete('cache',[BackupController::class, 'cache'])->name('cache.clear');
 
 // Page
 Route::resource('pages', PageController::class);
+
+// Menu
+Route::resource('menus', MenuController::class)->except(['show']);
+Route::group(['as' =>'menus.' ,'prefix' => 'menus/{id}'], function () {
+    Route::get('/builder', [MenuBuilderController::class, 'index'])->name('builder');
+});

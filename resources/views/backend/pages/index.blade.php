@@ -10,17 +10,18 @@
         <div class="card custom-card">
             <div class="card-header justify-content-between">
                 <h5 class="card-title">Roles List</h5>
-                <a class="btn btn-sm btn-info" href="{{ route('pages.create') }}">Add User</a>
+                <a class="btn btn-sm btn-info" href="{{ route('pages.create') }}">Create New Page</a>
             </div>
             <div class="table-responsive">
                 <table id="datatable" class="table table-centered table-nowrap mb-0 rounded">
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>Name</th>
-                        <th>Email</th>
+                        <th>Title</th>
+                        <th>URL</th>
                         <th>Status</th>
-                        <th>Joined At</th>
+                        <th>Last Modified</th>
+                        <th>Image</th>
                         <th class="text-center">Actions</th>
                     </tr>
                     </thead>
@@ -28,20 +29,8 @@
                     @foreach($pages as $key => $page)
                         <tr>
                             <td class="text-center text-muted">{{ $key + 1 }}</td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="flex-shrink-0">
-                                        <img
-                                            src="{{ Helpers::imageUrl($page->image, Page::IMAGE_UPLOAD_PATH) }}"
-                                            style="width: 40px" alt="" class="avatar-sm rounded-2">
-                                    </div>
-                                    <div class="flex-grow-1 ms-3">
-                                        <h6 class="mb-0">{{ $page->name }}</h6>
-                                        <span class="badge bg-indigo">{{ $page->role?->name }}</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>{{ $page->excerpt }}</td>
+                            <td>{{ $page->title }}</td>
+                            <td><a href="{{ route('page', $page->slug) }}" target="_blank" class="link-info">{{ $page->slug }}</a></td>
                             <td>
                                 @if($page->status)
                                     <span class="badge bg-success">Active</span>
@@ -49,12 +38,11 @@
                                     <span class="badge bg-danger">Inactive</span>
                                 @endif
                             </td>
-                            <td>{{ $page->created_at->diffForHumans() }}</td>
-                            <td class="text-center">
-                                <a class="btn btn-secondary btn-sm" href="{{ route('pages.show',$page->id) }}"><i
-                                        class="bx bxs-show"></i>
-                                    <span>Show</span>
-                                </a>
+                            <td>{{ $page->updated_at->diffForHumans() }}</td>
+                            <td>
+                                <img src="{{ Helpers::imageUrl($page->image, Page::IMAGE_UPLOAD_PATH, 60) }}" style="width: 60px" alt="" class="avatar-sm rounded-2">
+                            </td>
+                            <td>
                                 <a class="btn btn-info btn-sm" href="{{ route('pages.edit',$page->id) }}"><i
                                         class="bx bxs-edit"></i>
                                     <span>Edit</span>
