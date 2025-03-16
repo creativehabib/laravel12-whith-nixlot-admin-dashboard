@@ -51,15 +51,10 @@
                         </li>
                     </ul>
                 </li>
-                <!-- Start::slide__category -->
-                <li class="slide__category"><span class="category-name">General</span></li>
-                <!-- End::slide__category -->
-
-                <!-- Start::slide -->
                 <li class="slide has-sub">
                     <a href="javascript:void(0);" class="side-menu__item">
                         <i class="ti ti-dice-4  side-menu__icon"></i>
-                        <span class="side-menu__label">Ui Elements</span>
+                        <span class="side-menu__label">Pages</span>
                         <i class="fe fe-chevron-right side-menu__angle"></i>
                     </a>
                     <ul class="slide-menu child1">
@@ -68,7 +63,22 @@
                         </li>
                     </ul>
                 </li>
-                <!-- End::slide -->
+                <li class="slide has-sub">
+                    <a href="javascript:void(0);" class="side-menu__item">
+                        <i class="ti ti-dice-4  side-menu__icon"></i>
+                        <span class="side-menu__label">Menu Manage</span>
+                        <i class="fe fe-chevron-right side-menu__angle"></i>
+                    </a>
+                    <ul class="slide-menu child1">
+                        <li class="slide">
+                            <a href="{{ route('menus.index') }}" class="side-menu__item">Menu</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Start::slide__category -->
+                <li class="slide__category"><span class="category-name">General</span></li>
+                <!-- End::slide__category -->
+                 
                 <!-- Start::slide -->
                 <li class="slide has-sub">
                     <a href="javascript:void(0);" class="side-menu__item">

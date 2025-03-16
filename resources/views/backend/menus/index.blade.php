@@ -10,7 +10,7 @@
         <div class="card custom-card">
             <div class="card-header justify-content-between">
                 <h5 class="card-title">Menus List</h5>
-                <a class="btn btn-sm btn-info" href="{{ route('menus.create') }}">Create New Page</a>
+                <a class="btn btn-sm btn-info" href="{{ route('menus.create') }}"><i class="bx bx-plus-circle"></i> Create New Page</a>
             </div>
             <div class="table-responsive">
                 <table id="datatable" class="table table-centered table-nowrap mb-0 rounded">
@@ -30,7 +30,7 @@
                             <td><span class="text-danger">{{ $menu->name }}</span></td>
                             <td>{{ $menu->description }}</td>
                             <td>{{ $menu->updated_at->diffForHumans() }}</td>
-                            <td>
+                            <td class="text-center">
                                 <a class="btn btn-sm btn-success" href="{{ route('menus.builder',$menu->id) }}"><i
                                         class="bx bx-list-ul"></i>
                                     <span>Builder</span>

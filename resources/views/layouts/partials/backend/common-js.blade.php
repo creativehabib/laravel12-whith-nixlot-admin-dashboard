@@ -100,6 +100,8 @@
                     // Also add 'active' class to the submenu
                     if (submenu) {
                         submenu.classList.add("active");
+                        submenu.style.display = "block";
+                        submenu.parentElement.querySelector('.side-menu__item').classList.add('active')
                     }
                 }
             }

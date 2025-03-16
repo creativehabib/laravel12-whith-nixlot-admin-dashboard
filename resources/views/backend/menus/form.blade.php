@@ -9,7 +9,7 @@
                     <div class="card-header justify-content-between align-items-center">
                         <h5 class="card-title mb-0">Menu Create</h5>
                         <a href="{{ route('menus.index') }}" class="btn btn-primary btn-sm float-end">
-                         <i class="bx bxs-chevron-right"></i>   Back
+                         <i class="bx bx-arrow-back"></i>   Back
                         </a>
                     </div>
                     <form id="ajax-form" action="{{ isset($menu) ? route('menus.update', $menu->id) : route('menus.store') }}" method="POST">
