@@ -36,21 +36,18 @@
                 </li>
                 <!-- End::slide -->
                 <li class="slide__category"><span class="category-name">Access Control</span></li>
-                <li class="slide has-sub  {{Request::is('dashboard/*') ? 'active open' : ''}}">
-                    <a href="javascript:void(0);" class="side-menu__item {{Request::is('dashboard/*') ? 'active' : ''}}">
+                <li class="slide has-sub">
+                    <a href="javascript:void(0);" class="side-menu__item">
                         <i class="ti ti-access-point side-menu__icon"></i>
                         <span class="side-menu__label">Access Control</span>
                         <i class="fe fe-chevron-right side-menu__angle"></i>
                     </a>
                     <ul class="slide-menu child1 mega-menu">
-                        <li class="slide side-menu__label1 ">
-                            <a href="javascript:void(0)">Access Control</a>
+                        <li class="slide">
+                            <a href="{{ route('roles.index') }}" class="side-menu__item">Roles</a>
                         </li>
-                        <li class="slide {{Request::is('dashboard/roles*') ? 'active' : ''}}">
-                            <a href="{{ route('roles.index') }}" class="side-menu__item  {{Request::is('dashboard/roles*') ? 'active' : ''}}">Roles</a>
-                        </li>
-                        <li class="slide {{Request::is('dashboard/users*') ? 'active' : ''}}">
-                            <a href="{{ route('users.index') }}" class="side-menu__item  {{Request::is('dashboard/users*') ? 'active' : ''}}">Users</a>
+                        <li class="slide">
+                            <a href="{{ route('users.index') }}" class="side-menu__item">Users</a>
                         </li>
                     </ul>
                 </li>
@@ -65,63 +62,9 @@
                         <span class="side-menu__label">Ui Elements</span>
                         <i class="fe fe-chevron-right side-menu__angle"></i>
                     </a>
-                    <ul class="slide-menu child1 mega-menu">
-                        <li class="slide side-menu__label1">
-                            <a href="javascript:void(0)">Ui Elements</a>
-                        </li>
-                        <li class="slide">
-                            <a href="alerts.html" class="side-menu__item">Alerts</a>
-                        </li>
-                        <li class="slide">
-                            <a href="badge.html" class="side-menu__item">Badge</a>
-                        </li>
+                    <ul class="slide-menu child1">
                         <li class="slide">
                             <a href="{{ route('pages.index') }}" class="side-menu__item">Pages</a>
-                        </li>
-                        <li class="slide">
-                            <a href="buttons.html" class="side-menu__item">Buttons</a>
-                        </li>
-                        <li class="slide">
-                            <a href="buttongroup.html" class="side-menu__item">Button Group</a>
-                        </li>
-                        <li class="slide">
-                            <a href="cards.html" class="side-menu__item">Cards</a>
-                        </li>
-                        <li class="slide">
-                            <a href="dropdowns.html" class="side-menu__item">Dropdowns</a>
-                        </li>
-                        <li class="slide">
-                            <a href="images_figures.html" class="side-menu__item">Images & Figures</a>
-                        </li>
-                        <li class="slide">
-                            <a href="listgroup.html" class="side-menu__item">List Group</a>
-                        </li>
-                        <li class="slide">
-                            <a href="navs_tabs.html" class="side-menu__item">Navs & Tabs</a>
-                        </li>
-                        <li class="slide">
-                            <a href="object-fit.html" class="side-menu__item">Object Fit</a>
-                        </li>
-                        <li class="slide">
-                            <a href="pagination.html" class="side-menu__item">Pagination</a>
-                        </li>
-                        <li class="slide">
-                            <a href="popovers.html" class="side-menu__item">Popovers</a>
-                        </li>
-                        <li class="slide">
-                            <a href="progress.html" class="side-menu__item">Progress</a>
-                        </li>
-                        <li class="slide">
-                            <a href="spinners.html" class="side-menu__item">Spinners</a>
-                        </li>
-                        <li class="slide">
-                            <a href="toasts.html" class="side-menu__item">Toasts</a>
-                        </li>
-                        <li class="slide">
-                            <a href="tooltips.html" class="side-menu__item">Tooltips</a>
-                        </li>
-                        <li class="slide">
-                            <a href="typography.html" class="side-menu__item">Typography</a>
                         </li>
                     </ul>
                 </li>

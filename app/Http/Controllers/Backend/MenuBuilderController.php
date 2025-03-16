@@ -15,4 +15,15 @@ class MenuBuilderController extends Controller
         $menu = Menu::findOrFail($id);
         return view('backend.menus.builder', compact('menu'));
     }
+
+    public function createItem($id)
+    {
+        Gate::authorize('app.menus.index');
+        $menu = Menu::findOrFail($id);
+        return view('backend.menus.items.form', compact('menu'));
+    }
+    public function storeItem($id)
+    {
+
+    }
 }
