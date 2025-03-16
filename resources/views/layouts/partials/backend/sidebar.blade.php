@@ -49,6 +49,9 @@
                         <li class="slide">
                             <a href="{{ route('users.index') }}" class="side-menu__item">Users</a>
                         </li>
+                        <li class="slide">
+                            <a href="{{ route('backups.index') }}" class="side-menu__item">Backups</a>
+                        </li>
                     </ul>
                 </li>
                 <li class="slide has-sub">
@@ -65,7 +68,7 @@
                 </li>
                 <li class="slide has-sub">
                     <a href="javascript:void(0);" class="side-menu__item">
-                        <i class="ti ti-dice-4  side-menu__icon"></i>
+                        <i class="bx bx-menu  side-menu__icon"></i>
                         <span class="side-menu__label">Menu Manage</span>
                         <i class="fe fe-chevron-right side-menu__angle"></i>
                     </a>
