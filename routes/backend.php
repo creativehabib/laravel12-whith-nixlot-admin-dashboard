@@ -33,10 +33,17 @@ Route::delete('cache',[BackupController::class, 'cache'])->name('cache.clear');
 // Page
 Route::resource('pages', PageController::class);
 
-// Menu
+// Menu Builder
 Route::resource('menus', MenuController::class)->except(['show']);
-Route::group(['as' =>'menus.' ,'prefix' => 'menus/{id}'], function () {
-    Route::get('/builder', [MenuBuilderController::class, 'index'])->name('builder');
-    Route::get('items/create', [MenuBuilderController::class, 'createItem'])->name('items.create');
-    Route::post('items/store', [MenuBuilderController::class, 'storeItem'])->name('items.store');
+Route::post('menus/{menu}/order', [MenuController::class, 'orderItem'])->name('menus.order');
+Route::group(['as' => 'menus.', 'prefix' => 'menus/{id}/'], function () {
+    Route::get('builder', [MenuBuilderController::class, 'index'])->name('builder');
+    // Menu Item
+    Route::group(['as' => 'item.', 'prefix' => 'item'], function () {
+        Route::get('/create', [MenuBuilderController::class, 'itemCreate'])->name('create');
+        Route::post('/store', [MenuBuilderController::class, 'itemStore'])->name('store');
+        Route::get('/{itemId}/edit', [MenuBuilderController::class, 'itemEdit'])->name('edit');
+        Route::put('/{itemId}/update', [MenuBuilderController::class, 'itemUpdate'])->name('update');
+        Route::delete('/{itemId}/destroy', [MenuBuilderController::class, 'itemDestroy'])->name('destroy');
+    });
 });
