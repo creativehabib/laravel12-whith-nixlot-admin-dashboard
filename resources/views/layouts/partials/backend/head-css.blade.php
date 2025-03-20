@@ -16,5 +16,4 @@
     <link rel="stylesheet" href="{{ asset('assets/libs/@simonwep/picker/themes/nano.min.css') }}">
     @stack('css')
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-    @vite([ 'resources/scss/icons.scss', 'resources/scss/styles.scss'])
+    @vite(['resources/sass/app.scss','resources/scss/styles.scss','resources/js/app.js','resources/scss/icons.scss'])
